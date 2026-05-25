@@ -1,0 +1,68 @@
+analyze_blog_task:
+  description: >
+    使用 ScrapeWebsiteTool 抓取 Rowan 博客的 RSS 源：
+    https://rowanliu.com/rss.xml
+
+    从 RSS 内容中提取：
+    1. 所有文章标题和发布日期
+    2. 涉及的技术主题（如 Angular、Vue、CI/CD、HTTP、OAuth 等）
+    3. 各主题的文章数量分布
+    4. 最近 1 年内发布的文章（2025-2026 年）
+
+    输出一份结构化的博客内容地图，标注已覆盖和薄弱的领域。
+  expected_output: >
+    一份博客内容分析报告，包含：
+    - 已覆盖主题列表及各主题文章数量
+    - 最近活跃主题（2025-2026 年）
+    - 明显薄弱或尚未涉及的技术领域
+  agent: blog_analyst
+
+research_trends_task:
+  description: >
+    搜索 2026 年前端开发和 Web 技术领域最热门的话题，
+    重点关注 Rowan 博客尚未深入覆盖的方向。
+
+    搜索方向：
+    1. "frontend development trends 2026"
+    2. "React Server Components best practices 2026"
+    3. "WebAssembly frontend 2026"
+    4. "frontend testing strategies 2026 vitest playwright"
+    5. "AI coding tools developer workflow 2026"
+
+    结合博客内容分析的结果，找出 3-5 个最具潜力的选题方向。
+  expected_output: >
+    一份趋势研究报告，列出 3-5 个热门话题，
+    每个话题说明：为什么热门、与 Rowan 现有内容的关系、潜在读者群体。
+  agent: trend_researcher
+  context:
+    - analyze_blog_task
+
+generate_suggestions_task:
+  description: >
+    综合博客内容分析和趋势研究，为 Rowan 生成 5 个新文章选题建议。
+
+    每个选题必须满足：
+    1. 与 Rowan 现有技术积累相关（前端/Angular/AI 方向）
+    2. 尚未被博客深入覆盖
+    3. 2026 年读者关注度高
+    4. 适合中文技术博客受众
+
+    每个选题包含：标题、一句话定位、3-5 个核心写作要点、预估读者群体。
+    全部以中文输出。
+  expected_output: >
+    5 个结构化的博客选题建议，格式如下：
+
+    ## 选题 1：[文章标题]
+    **定位**：[一句话说明这篇文章的核心价值]
+    **写作要点**：
+    - 要点 1
+    - 要点 2
+    - 要点 3
+    **目标读者**：[描述目标读者]
+
+    （重复 5 次）
+  agent: content_strategist
+  output_file: suggestions.md
+  context:
+    - analyze_blog_task
+    - research_trends_task
