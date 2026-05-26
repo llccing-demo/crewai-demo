@@ -1,0 +1,228 @@
+{
+  "package_path": "C:\\Users\\LiuRowanChunfeng\\Projects\\xinda\\crewai-demo\\src\\blog_improver\\results\\translations\\deepseek-v4-pro\\github-com-tc39-proposal-signals-20260526-000625\\source_package.json",
+  "target_language": "Simplified Chinese",
+  "verified_at": "2026-05-26T00:41:52.257860+00:00",
+  "verification_passed": false,
+  "missing_segments": [],
+  "extra_segments": [],
+  "empty_segments": [],
+  "segment_results": [
+    {
+      "segment_id": "SEGMENT-001",
+      "structural_passed": false,
+      "structural_issues": [
+        "one or more URLs disappeared"
+      ],
+      "missing_urls": [
+        "https://angular.io/)",
+        "https://blog.angular.io/angular-and-wiz-are-better-together-91e633d8cd5a)",
+        "https://bubble.io/)",
+        "https://emberjs.com/)",
+        "https://github.com/proposal-signals/signal-polyfill)",
+        "https://mobx.js.org/)",
+        "https://preactjs.com/)",
+        "https://qwik.dev/)",
+        "https://rxjs.dev/)",
+        "https://svelte.dev/)",
+        "https://tc39.es/process-document/)",
+        "https://vuejs.org/)",
+        "https://www.fast.design/)",
+        "https://www.pzuraq.com/blog/what-is-reactivity)",
+        "https://www.solidjs.com/)",
+        "https://www.starbeamjs.com/)"
+      ],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation fully covers the source segment without omissions or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-002",
+      "structural_passed": false,
+      "structural_issues": [
+        "code fence count changed",
+        "one or more URLs disappeared"
+      ],
+      "missing_urls": [
+        "https://blog.stevensanderson.com/2010/07/05/introducing-knockout-a-ui-library-for-javascript/)",
+        "https://knockoutjs.com/)"
+      ],
+      "semantic_status": "PASS",
+      "semantic_rationale": "All source content, including code, notes, problems list, and signal introduction, is fully translated without omissions.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-003",
+      "structural_passed": true,
+      "structural_issues": [],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation fully covers all sections, lists, and ideas from the source without any omissions or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-004",
+      "structural_passed": true,
+      "structural_issues": [],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation fully covers the source segment without omissions or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-005",
+      "structural_passed": true,
+      "structural_issues": [],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "All source content, including headings, bullet points, and sub-bullets, is fully covered in the translation without omission.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-006",
+      "structural_passed": false,
+      "structural_issues": [
+        "code fence count changed"
+      ],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation fully covers all source content, including bullet points, sub-points, notes, code examples, and the API sketch.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-007",
+      "structural_passed": true,
+      "structural_issues": [],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "All code comments, function signatures, and the explanatory paragraph “How Signals work” are translated in full without omissions or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-008",
+      "structural_passed": false,
+      "structural_issues": [
+        "one or more URLs disappeared"
+      ],
+      "missing_urls": [
+        "https://react.dev/learn/you-might-not-need-an-effect)"
+      ],
+      "semantic_status": "PASS",
+      "semantic_rationale": "Translation fully covers all paragraphs, bullet points, notes, and section headers from the source segment without omission or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-009",
+      "structural_passed": true,
+      "structural_issues": [],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation faithfully covers all paragraphs, code blocks, and notes without summarization or omission.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-010",
+      "structural_passed": true,
+      "structural_issues": [],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation covers every part of the source segment without omission or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-011",
+      "structural_passed": true,
+      "structural_issues": [],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation fully covers all source points, including details about callbacks, exceptions, garbage collection, global state, namespace, Signal.State slots, constructor, and get method.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-012",
+      "structural_passed": true,
+      "structural_issues": [],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation fully covers all items, bullet points, notes, state machine, and transition table without omission or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-013",
+      "structural_passed": false,
+      "structural_issues": [
+        "one or more URLs disappeared"
+      ],
+      "missing_urls": [
+        "https://github.com/tc39/proposal-async-context)"
+      ],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation fully covers all items in the source segment without omissions or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-014",
+      "structural_passed": true,
+      "structural_issues": [],
+      "missing_urls": [],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation fully covers all source items without omission or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-015",
+      "structural_passed": false,
+      "structural_issues": [
+        "one or more URLs disappeared"
+      ],
+      "missing_urls": [
+        "https://github.com/proposal-signals/signal-polyfill#combining-signals-and-decorators)"
+      ],
+      "semantic_status": "PASS",
+      "semantic_rationale": "The translation fully covers all questions, answers, and details from the source without omissions or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-016",
+      "structural_passed": false,
+      "structural_issues": [
+        "one or more URLs disappeared"
+      ],
+      "missing_urls": [
+        "https://docs.solidjs.com/concepts/stores)",
+        "https://github.com/NullVoxPopuli/signal-utils/tree/main/src)",
+        "https://github.com/proposal-signals/proposal-signals/issues/101#issuecomment-2029802574)",
+        "https://github.com/tracked-tools/tracked-built-ins/tree/master/addon/src/-private)",
+        "https://vuejs.org/api/reactivity-core.html#reactive)"
+      ],
+      "semantic_status": "PASS",
+      "semantic_rationale": "All questions, answers, code blocks, and references are fully translated without omission or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-017",
+      "structural_passed": false,
+      "structural_issues": [
+        "one or more URLs disappeared"
+      ],
+      "missing_urls": [
+        "https://en.wikipedia.org/wiki/Reactive_programming#Glitches)"
+      ],
+      "semantic_status": "PASS",
+      "semantic_rationale": "All questions and answers from the source segment are fully translated without omissions or summarization.",
+      "semantic_missing": []
+    },
+    {
+      "segment_id": "SEGMENT-018",
+      "structural_passed": false,
+      "structural_issues": [
+        "one or more URLs disappeared"
+      ],
+      "missing_urls": [
+        "https://discord.gg/jt9TRqQ7)"
+      ],
+      "semantic_status": "PASS",
+      "semantic_rationale": "翻译完整涵盖了源段落的所有内容，未发现遗漏或摘要。",
+      "semantic_missing": []
+    }
+  ]
+}

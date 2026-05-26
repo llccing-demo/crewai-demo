@@ -30,6 +30,12 @@ crewai-demo/
 - `seo_specialist` checks titles, heading structure, keyword density, internal links
 - `technical_editor` checks completeness, code examples, readability → outputs full **Chinese review report** to `review.md`
 
+**Crew 3 — URL Translator With Coverage Check** (`translate` command):
+- `content_fetcher` fetches a URL into a segmented source package and runs a fetch completeness check
+- `translation_specialist` translates each segment to Chinese instead of trying to translate one huge page in a single prompt
+- `translation_verifier` confirms every segment is present and flags likely omissions or summarization
+- artifacts are written under `src/blog_improver/results/translations/<model>/<run>/`
+
 ---
 
 ## Next steps to run it
@@ -47,5 +53,16 @@ crewai-demo/
    ```
    uv run python -m blog_improver.main review --url https://rowanliu.com/posts/angular-signals-zoneless/
    ```
+
+4. Run Crew 3 (fetch + translate + verify any URL):
+   ```
+   uv run python -m blog_improver.main translate --url https://example.com/article
+   ```
+
+   This workflow writes:
+   - `source.md` and `source_segments.md`
+   - `translation.md`
+   - `fetch_report.md`
+   - `verification.md`
 
 Made changes.

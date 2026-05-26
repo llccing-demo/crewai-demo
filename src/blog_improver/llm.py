@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from typing import Any
 from urllib.parse import urlparse
 
 from crewai import LLM
@@ -135,6 +136,70 @@ def format_llm_runtime_info() -> str:
             f"  source: {info['override_note']}",
         ]
     )
+
+
+def _extract_chat_message_text(content: Any) -> str:
+    if isinstance(content, str):
+        return content.strip()
+
+    if isinstance(content, list):
+        parts: list[str] = []
+        for part in content:
+            if not isinstance(part, dict):
+                continue
+            text = part.get("text")
+            if isinstance(text, str) and text.strip():
+                parts.append(text.strip())
+        if parts:
+            return "\n".join(parts).strip()
+
+    raise RuntimeError("Chat completion response did not contain a text message.")
+
+
+def chat_completion(
+    messages: list[dict[str, str]],
+    *,
+    temperature: float = 0.0,
+    max_tokens: int | None = None,
+    timeout: float = 120.0,
+) -> str:
+    """Call the configured OpenAI-compatible chat completion endpoint."""
+
+    _load_project_env()
+
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError("Missing OPENAI_API_KEY in .env.")
+
+    base_url = os.getenv("OPENAI_API_BASE", "https://api.openai.com/v1").rstrip("/")
+    model_name = os.getenv("OPENAI_MODEL_NAME", "gpt-4o-mini")
+
+    payload: dict[str, Any] = {
+        "model": model_name,
+        "messages": messages,
+        "temperature": temperature,
+    }
+    if max_tokens is not None:
+        payload["max_tokens"] = max_tokens
+
+    response = httpx.post(
+        f"{base_url}/chat/completions",
+        headers={"Authorization": f"Bearer {api_key}"},
+        json=payload,
+        timeout=timeout,
+    )
+
+    if response.status_code >= 400:
+        detail = response.text.strip().replace("\n", " ")[:300]
+        raise RuntimeError(
+            f"Chat completion failed with status {response.status_code}: {detail}"
+        )
+
+    try:
+        payload_json = response.json()
+        return _extract_chat_message_text(payload_json["choices"][0]["message"]["content"])
+    except (KeyError, IndexError, TypeError, ValueError) as exc:
+        raise RuntimeError("Unexpected chat completion response format.") from exc
 
 
 def validate_llm_connection() -> None:

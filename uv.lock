@@ -589,14 +589,18 @@ name = "crewai-demo"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "beautifulsoup4" },
     { name = "crewai", extra = ["tools"] },
     { name = "hatchling" },
+    { name = "httpx" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "beautifulsoup4", specifier = ">=4.12.3" },
     { name = "crewai", extras = ["tools"], specifier = ">=1.14.5" },
     { name = "hatchling", specifier = ">=1.29.0" },
+    { name = "httpx", specifier = ">=0.28.1" },
 ]
 
 [[package]]

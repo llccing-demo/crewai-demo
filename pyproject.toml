@@ -4,8 +4,10 @@ version = "0.1.0"
 description = "CrewAI demo: AI agents that analyze and improve rowanliu.com blog"
 requires-python = ">=3.12"
 dependencies = [
+    "beautifulsoup4>=4.12.3",
     "crewai[tools]>=1.14.5",
     "hatchling>=1.29.0",
+    "httpx>=0.28.1",
 ]
 
 [project.scripts]

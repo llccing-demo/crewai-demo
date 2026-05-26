@@ -5,6 +5,11 @@ from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
 
 from blog_improver.llm import get_default_llm
+from blog_improver.tools import (
+    FetchUrlContentTool,
+    TranslateContentPackageTool,
+    VerifyTranslationPackageTool,
+)
 
 
 @CrewBase
@@ -129,6 +134,68 @@ class SEOReviewerCrew:
         )
 
     # ── Crew ──────────────────────────────────────────────────────────────────
+
+    @crew
+    def crew(self) -> Crew:
+        return Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            process=Process.sequential,
+            verbose=True,
+        )
+
+
+@CrewBase
+class UrlTranslationCrew:
+    """Crew 3: Fetches URL content, translates it to Chinese, and verifies nothing was dropped."""
+
+    agents_config = "config/translation_agents.yaml"
+    tasks_config = "config/translation_tasks.yaml"
+
+    agents: List[BaseAgent]
+    tasks: List[Task]
+
+    @agent
+    def content_fetcher(self) -> Agent:
+        return Agent(
+            config=self.agents_config["content_fetcher"],
+            tools=[FetchUrlContentTool()],
+            llm=get_default_llm(),
+            verbose=True,
+        )
+
+    @agent
+    def translation_specialist(self) -> Agent:
+        return Agent(
+            config=self.agents_config["translation_specialist"],
+            tools=[TranslateContentPackageTool()],
+            llm=get_default_llm(),
+            verbose=True,
+        )
+
+    @agent
+    def translation_verifier(self) -> Agent:
+        return Agent(
+            config=self.agents_config["translation_verifier"],
+            tools=[VerifyTranslationPackageTool()],
+            llm=get_default_llm(),
+            verbose=True,
+        )
+
+    @task
+    def fetch_content_task(self) -> Task:
+        return Task(config=self.tasks_config["fetch_content_task"])
+
+    @task
+    def translate_content_task(self) -> Task:
+        return Task(config=self.tasks_config["translate_content_task"])
+
+    @task
+    def verify_translation_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["verify_translation_task"],
+            output_file="translation_summary.md",
+        )
 
     @crew
     def crew(self) -> Crew:

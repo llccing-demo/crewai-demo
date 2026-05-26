@@ -1,0 +1,71 @@
+fetch_content_task:
+  description: >
+    使用 fetch_url_content_tool 抓取以下 URL：
+    {source_url}
+
+    要求：
+    1. 必须调用工具生成 source package，而不是在上下文里手工复制网页内容。
+    2. 先完成抓取完整性检查，只有当 FETCH_STATUS 为 PASS 时，后续翻译才可继续。
+    3. 输出中必须明确列出 PACKAGE_PATH、SOURCE_MARKDOWN_PATH、SOURCE_SEGMENTS_PATH、
+       FETCH_REPORT_PATH、SEGMENT_COUNT、SIMILARITY_RATIO。
+    4. 如果 FETCH_STATUS 为 FAIL，要明确说明原因和 warnings。
+  expected_output: >
+    一份简洁的抓取结果摘要，必须包含以下字段：
+    - FETCH_STATUS
+    - PACKAGE_PATH
+    - SOURCE_MARKDOWN_PATH
+    - SOURCE_SEGMENTS_PATH
+    - FETCH_REPORT_PATH
+    - SEGMENT_COUNT
+    - SIMILARITY_RATIO
+    - WARNINGS
+  agent: content_fetcher
+
+translate_content_task:
+  description: >
+    基于上一步输出的 PACKAGE_PATH，使用 translate_content_package_tool
+    将整份 source package 翻译成 {target_language}。
+
+    要求：
+    1. 不要手工在任务上下文中直接翻译长文。
+    2. 必须调用工具完成逐段翻译，避免模型因为上下文过长而总结内容。
+    3. 输出中必须明确列出 PACKAGE_PATH、TRANSLATION_PATH、TRANSLATION_JSON_PATH、
+       TARGET_LANGUAGE、TRANSLATED_SEGMENT_COUNT。
+  expected_output: >
+    一份翻译结果摘要，必须包含以下字段：
+    - TRANSLATION_STATUS
+    - PACKAGE_PATH
+    - TRANSLATION_PATH
+    - TRANSLATION_JSON_PATH
+    - TARGET_LANGUAGE
+    - TRANSLATED_SEGMENT_COUNT
+  agent: translation_specialist
+  context:
+    - fetch_content_task
+
+verify_translation_task:
+  description: >
+    基于同一个 PACKAGE_PATH，使用 verify_translation_package_tool
+    验证翻译是否覆盖了全部 source segments。
+
+    核心检查：
+    1. 每个 segment 是否都存在于翻译结果中
+    2. segment 是否为空
+    3. 标题、列表、代码块和 URL 是否被保留
+    4. 是否存在“总结代替翻译”的遗漏行为
+
+    输出中必须明确列出 VERIFICATION_STATUS、VERIFICATION_REPORT_PATH、
+    VERIFICATION_JSON_PATH、MISSING_SEGMENTS、EMPTY_SEGMENTS。
+  expected_output: >
+    一份最终校验摘要，包含：
+    - VERIFICATION_STATUS
+    - PACKAGE_PATH
+    - VERIFICATION_REPORT_PATH
+    - VERIFICATION_JSON_PATH
+    - MISSING_SEGMENTS
+    - EMPTY_SEGMENTS
+    - 对最终是否可以信任该翻译结果的简短结论
+  agent: translation_verifier
+  context:
+    - fetch_content_task
+    - translate_content_task
